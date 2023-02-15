@@ -1,10 +1,13 @@
 package org.example.pen;
 
+import org.example.refill.Refill;
+
 public abstract class Pen {
     private String name;
     private String brand;
-    private int price;
-    abstract void write();
+    private Integer price;
+
+    Refill refill;
 
     public String getName() {
         return name;
@@ -22,12 +25,16 @@ public abstract class Pen {
         this.brand = brand;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Refill getRefill() {
+        return refill;
     }
 
     @Override
@@ -36,6 +43,7 @@ public abstract class Pen {
                 "name='" + name + '\'' +
                 ", brand='" + brand + '\'' +
                 ", price=" + price +
+                ", refill=" + refill +
                 '}';
     }
 }

@@ -1,17 +1,12 @@
 package org.example.pen;
 
-import org.example.refillable.CatrigeRefillable;
-import org.example.refill.CatridgeRefill;
+import org.example.refill.CartridgeRefill;
+import org.example.refillable.Refillable;
 
-public class FountainPen extends Pen implements CatrigeRefillable {
+public class FountainPen extends Pen implements Refillable {
 
-    CatridgeRefill catridgeRefill;
-
-    void write() {
-
-    }
-
-    public void refill(CatridgeRefill catridgeRefill) {
-        this.catridgeRefill = catridgeRefill;
+    @Override
+    public void refill() {
+        this.refill = new CartridgeRefill();
     }
 }

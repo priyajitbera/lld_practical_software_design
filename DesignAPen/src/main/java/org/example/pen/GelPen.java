@@ -1,17 +1,11 @@
 package org.example.pen;
 
-import org.example.refillable.GelRefillable;
-import org.example.refill.GelRefill;
+import org.example.refill.BallRefill;
+import org.example.refillable.Refillable;
 
-public class GelPen extends Pen implements GelRefillable {
-
-    GelRefill gelRefill;
-
-    void write() {
-
-    }
-
-    public void refill(GelRefill gelRefill) {
-        this.gelRefill = gelRefill;
+public class GelPen extends Pen implements Refillable {
+    @Override
+    public void refill() {
+        this.refill = new BallRefill();
     }
 }

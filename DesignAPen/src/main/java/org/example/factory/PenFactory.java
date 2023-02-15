@@ -1,23 +1,38 @@
 package org.example.factory;
 
-import org.example.pen.BallPen;
-import org.example.pen.FountainPen;
-import org.example.pen.GelPen;
+import org.example.pen.*;
 
 public class PenFactory {
+    public static GelPen celloGelPen() {
+        GelPen pen = new GelPen();
+        pen.setName("Cello Gel Pen");
+        pen.setBrand("Cello");
+        pen.setPrice(15);
+        return pen;  }
 
-    public static BallPen ballPen(){
-        BallPen ballPen = new BallPen();
-        return ballPen;
+    public static FountainPen parkerFountainPen() {
+        FountainPen pen = new FountainPen();
+        pen.setName("Parker Fountain Pen");
+        pen.setBrand("Parker");
+        pen.setPrice(550);
+        return pen;
     }
 
-    public static GelPen gelPen(){
-        GelPen gelPen = new GelPen();
-        return gelPen;
+    public static UserNThrowPen agniUseNThrowPen() {
+        UserNThrowPen pen = new UserNThrowPen();
+        pen.setName("Agni UseNThrow Pen");
+        pen.setBrand("Agni");
+        pen.setPrice(5);
+        return pen;
     }
 
-    public static FountainPen fountainPen(){
-        FountainPen fountainPen = new FountainPen();
-        return fountainPen;
+    public static BallPen lincBallPen() {
+        BallPen pen = new BallPen();
+        pen.setName("Linc Ball Pen");
+        pen.setBrand("Linc");
+        pen.setPrice(10);
+        return pen;
     }
+
+
 }
