@@ -12,11 +12,12 @@ public class App {
         FountainPen fountainPen = PenFactory.parkerFountainPen();
         UserNThrowPen useNThrowPen = PenFactory.agniUseNThrowPen();
         GelPen gelPen = PenFactory.celloGelPen();
+        
         ballPen.refill();
-
         fountainPen.refill();
         useNThrowPen.refill();
         gelPen.refill();
+        
         System.out.println(ballPen);
         System.out.println(fountainPen);
         System.out.println(useNThrowPen);
