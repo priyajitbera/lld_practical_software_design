@@ -1,13 +1,13 @@
-package org.example.pen;
+package com.priyajit.designAPen.pen;
 
-import org.example.refill.Refill;
+import com.priyajit.designAPen.strategy.RefillStrategy;
 
 public abstract class Pen {
     private String name;
     private String brand;
     private Integer price;
 
-    Refill refill;
+    RefillStrategy refillStrategy;
 
     public String getName() {
         return name;
@@ -33,8 +33,8 @@ public abstract class Pen {
         this.price = price;
     }
 
-    public Refill getRefill() {
-        return refill;
+    public RefillStrategy getRefill() {
+        return refillStrategy;
     }
 
     @Override
@@ -43,7 +43,7 @@ public abstract class Pen {
                 "name='" + name + '\'' +
                 ", brand='" + brand + '\'' +
                 ", price=" + price +
-                ", refill=" + refill +
+                ", refillStrategy=" + refillStrategy +
                 '}';
     }
 }

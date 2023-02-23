@@ -1,14 +1,19 @@
-package org.example.factory;
+package com.priyajit.designAPen.factory;
 
-import org.example.pen.*;
+import com.priyajit.designAPen.pen.BallPen;
+import com.priyajit.designAPen.pen.FountainPen;
+import com.priyajit.designAPen.pen.GelPen;
+import com.priyajit.designAPen.pen.UserNThrowPen;
 
 public class PenFactory {
+
     public static GelPen celloGelPen() {
         GelPen pen = new GelPen();
         pen.setName("Cello Gel Pen");
         pen.setBrand("Cello");
         pen.setPrice(15);
-        return pen;  }
+        return pen;
+    }
 
     public static FountainPen parkerFountainPen() {
         FountainPen pen = new FountainPen();
@@ -33,6 +38,4 @@ public class PenFactory {
         pen.setPrice(10);
         return pen;
     }
-
-
 }
