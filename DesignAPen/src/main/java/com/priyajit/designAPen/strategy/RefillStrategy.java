@@ -1,6 +1,6 @@
-package org.example.refill;
+package com.priyajit.designAPen.strategy;
 
-public abstract class Refill {
+public abstract class RefillStrategy {
     String name;
 
     public String getName() {
@@ -13,8 +13,6 @@ public abstract class Refill {
 
     @Override
     public String toString() {
-        return "Refill{" +
-                "name='" + name + '\'' +
-                '}';
+        return "Refill{" + "name='" + name + '\'' + '}';
     }
 }
