@@ -108,29 +108,17 @@ public class Board {
     }
 
     private void incrSymbolCount(int row, int col, char symbol) {
-
         incrColWiseSymbolCount(col, symbol);
         incrRowWiseSymbolCount(row, symbol);
         incrPosDiagWiseSymbolCount(row, col, symbol);
         incrNegDiagWiseSymbolCount(row, col, symbol);
-
-        System.out.println("colWise: " + colWiseSymbolCount);
-        System.out.println("rowWise: " + rowWiseSymbolCount);
-        System.out.println("posDiagWise: " + posDiagWiseSymbolCount);
-        System.out.println("negDiagWise: " + negDiagWiseSymbolCount);
     }
 
     private void decrSymbolCount(int row, int col, char symbol) {
-
         decrColWiseSymbolCount(col, symbol);
         decrRowWiseSymbolCount(row, symbol);
         decrPosDiagWiseSymbolCount(row, col, symbol);
         decrNegDiagWiseSymbolCount(row, col, symbol);
-
-        System.out.println("colWise: " + colWiseSymbolCount);
-        System.out.println("rowWise: " + rowWiseSymbolCount);
-        System.out.println("posDiagWise: " + posDiagWiseSymbolCount);
-        System.out.println("negDiagWise: " + negDiagWiseSymbolCount);
     }
 
     private void incrColWiseSymbolCount(int col, char symbol) {
