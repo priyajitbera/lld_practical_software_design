@@ -17,11 +17,13 @@ public class SimpleWinningStrategy extends WinningStrategy {
         int row = lastMove.getRow();
         int col = lastMove.getCol();
 
+        // get count of the last move's symbol
         int colSymbolCount = board.getColWiseSymbolCount().get(col).get(symbol);
         int rowSymbolCount = board.getRowWiseSymbolCount().get(row).get(symbol);
         int posDiagSymbolCount = board.getPosDiagWiseSymbolCount().get(col - row).get(symbol);
         int negDiagSymbolCount = board.getNegDiagWiseSymbolCount().get(col + row).get(symbol);
 
+        // check if any(row / col / diagonals) symbol count matches the dimension
         if (dimension == colSymbolCount || dimension == rowSymbolCount || dimension == posDiagSymbolCount || dimension == negDiagSymbolCount) {
             return GameStatus.FINISHED;
         }

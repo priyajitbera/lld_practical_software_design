@@ -5,13 +5,11 @@ import com.priyajit.designTicTacToe.player.Move;
 
 import java.util.Random;
 
-
-
 /**
  * Implementation of DifficultyLevel for bot players
- * Randomly selects a free cell for move
+ * (same strategy as easy difficulty level, made up for demo)
  */
-public class EasyDifficultyLevel extends DifficultyLevel {
+public class MediumDifficultyLevel extends DifficultyLevel {
     @Override
     public Move doMove(Board board) {
         int dimension = board.getDimension();

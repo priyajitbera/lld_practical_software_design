@@ -1,5 +1,5 @@
 package com.priyajit.designTicTacToe.game;
 
 public enum GameStatus {
-    IN_PROGRESS, DRAW, FINISHED
+    IN_PROGRESS, DRAW, FINISHED // FINISHED indicates winner
 }

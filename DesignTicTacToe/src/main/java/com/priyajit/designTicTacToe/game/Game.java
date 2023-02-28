@@ -1,6 +1,7 @@
 package com.priyajit.designTicTacToe.game;
 
 import com.priyajit.designTicTacToe.ConsoleReader;
+import com.priyajit.designTicTacToe.ConsoleReaderImpl;
 import com.priyajit.designTicTacToe.player.Move;
 import com.priyajit.designTicTacToe.player.Player;
 import com.priyajit.designTicTacToe.strategy.winningstrategy.WinningStrategy;
@@ -36,7 +37,7 @@ public class Game {
     }
 
     public void start() {
-        ConsoleReader consoleReader = ConsoleReader.getInstance();
+        ConsoleReader consoleReader = ConsoleReaderImpl.getInstance();
         createPlaySequence();
         currentGameStatus = GameStatus.IN_PROGRESS;
         while (currentGameStatus == GameStatus.IN_PROGRESS) {

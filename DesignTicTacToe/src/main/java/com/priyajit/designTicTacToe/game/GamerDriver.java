@@ -1,13 +1,17 @@
 package com.priyajit.designTicTacToe.game;
 
 import com.priyajit.designTicTacToe.ConsoleReader;
+import com.priyajit.designTicTacToe.ConsoleReaderImpl;
+import com.priyajit.designTicTacToe.factory.DifficultyLevelFactory;
 import com.priyajit.designTicTacToe.player.BotPlayer;
 import com.priyajit.designTicTacToe.player.HumanPlayer;
 import com.priyajit.designTicTacToe.player.Player;
+import com.priyajit.designTicTacToe.strategy.difficulylevel.DifficultyLevel;
 import com.priyajit.designTicTacToe.strategy.difficulylevel.EasyDifficultyLevel;
 import com.priyajit.designTicTacToe.strategy.winningstrategy.SimpleWinningStrategy;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * GameDriver responsible to initiate a game
@@ -17,7 +21,7 @@ public class GamerDriver {
     public static void startGame() {
         // Get initial inputs from user with validation to create a Game and start
         // Get dimension of the board
-        ConsoleReader consoleReader = ConsoleReader.getInstance();
+        ConsoleReader consoleReader = ConsoleReaderImpl.getInstance();
         int dimension = consoleReader.readInt("dimension", "", 2, 50);
 
         // Get total player count
@@ -62,7 +66,7 @@ public class GamerDriver {
      * @param takenSymbols
      */
     private static void addHumanPlayers(int humanPlayerCount, List<Player> players, Set<Character> takenSymbols) {
-        ConsoleReader consoleReader = ConsoleReader.getInstance();
+        ConsoleReader consoleReader = ConsoleReaderImpl.getInstance();
         for (int i = 0; i < humanPlayerCount; i++) {
             String name = consoleReader.readString("player name", "", 3, 10);
             char symbol = consoleReader.readChar("symbol", "", takenSymbols);
@@ -74,15 +78,22 @@ public class GamerDriver {
     }
 
     private static void addBotPlayers(int botPlayerCount, List<Player> players, Set<Character> takenSymbols) {
-        ConsoleReader consoleReader = ConsoleReader.getInstance();
+        ConsoleReader consoleReader = ConsoleReaderImpl.getInstance();
         if (botPlayerCount == 0) return;
-        List<String> difficultyLevels = List.of("easy", "medium");
-        String difficultyLevel = consoleReader.readString("difficulty level", "", difficultyLevels);
+        List<String> difficultyLevels = Arrays.stream(DifficultyLevel.DIFFICULTY_LEVELS.values())
+                .map(Enum::toString)
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+
+        String choice = consoleReader.readString("difficulty level", "", difficultyLevels);
+
+        DifficultyLevel difficultyLevel = DifficultyLevelFactory.getDifficultyLevel(choice);
+
         char botSymbol = 'A';
         for (int i = 0; i < botPlayerCount; i++) {
             while (takenSymbols.contains(botSymbol)) botSymbol++;
             String botName = "EasyBot" + (i + 1);
-            Player player = new BotPlayer(botName, botSymbol, new EasyDifficultyLevel());
+            Player player = new BotPlayer(botName, botSymbol, difficultyLevel);
             players.add(player);
             takenSymbols.add(botSymbol++);
         }
