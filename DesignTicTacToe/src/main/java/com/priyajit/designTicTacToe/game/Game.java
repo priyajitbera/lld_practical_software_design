@@ -1,5 +1,6 @@
 package com.priyajit.designTicTacToe.game;
 
+import com.priyajit.designTicTacToe.ConsoleReader;
 import com.priyajit.designTicTacToe.player.Move;
 import com.priyajit.designTicTacToe.player.Player;
 import com.priyajit.designTicTacToe.strategy.winningstrategy.WinningStrategy;
@@ -35,12 +36,23 @@ public class Game {
     }
 
     public void start() {
+        ConsoleReader consoleReader = ConsoleReader.getInstance();
         createPlaySequence();
         currentGameStatus = GameStatus.IN_PROGRESS;
         while (currentGameStatus == GameStatus.IN_PROGRESS) {
             for (int playerIndex : playSequence) {
                 System.out.println("Current Board:");
                 board.printBoard();
+
+                // ask for choice of undo
+                if (moves.size() > 0) {
+                    List<Character> options = List.of('y', 'n');
+                    char choice = consoleReader.readChar("choice", "undo previous move?", options);
+                    if(choice == 'y'){
+                        undo();
+                        continue;
+                    }
+                }
                 Player player = players.get(playerIndex);
                 System.out.println("Turn for " + player);
                 Move move = player.makeMove(board);
@@ -70,11 +82,16 @@ public class Game {
     }
 
     public void undo() {
-
+        if (moves.size() == 0) return;
+        Move lastMove = moves.get(moves.size() - 1);
+        board.undoMove(lastMove.getRow(), lastMove.getCol(), lastMove.getPlayer().getSymbol());
     }
 
     public void reconstructBoard() {
-
+        resetBoard();
     }
 
+    private void resetBoard() {
+
+    }
 }
