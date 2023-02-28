@@ -11,20 +11,9 @@ public class HumanPlayer extends Player {
 
     public Move makeMove(Board board) {
         int dimension = board.getDimension();
-        System.out.println("Enter row:");
-        int row = ConsoleReader.scanner.nextInt();
-        while(!isValidRow(row, dimension)){
-
-            row = ConsoleReader.scanner.nextInt();
-        }
-        System.out.println("Enter col:");
-        int col = ConsoleReader.scanner.nextInt();
+        ConsoleReader consoleReader = ConsoleReader.getInstance();
+        int row = consoleReader.readInt("row", "", 0, dimension-1);
+        int col = consoleReader.readInt("col", "", 0, dimension-1);
         return new Move(row, col, this);
-    }
-    private boolean isValidRow(int row, int dimension){
-        return row >=0 && row < dimension;
-    }
-    private boolean isValidCol(int col, int dimension){
-        return col >=0 && col < dimension;
     }
 }

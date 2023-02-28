@@ -17,20 +17,11 @@ public class GamerDriver {
     public static void startGame() {
         // Get initial inputs from user with validation to create a Game and start
         // Get dimension of the board
-        System.out.println("Enter dimension of the Board(>=1):");
-        int dimension = ConsoleReader.scanner.nextInt();
-        while (!isValidDimension(dimension)) {
-            System.out.println("wrong input, enter correctly:");
-            dimension = ConsoleReader.scanner.nextInt();
-        }
+        ConsoleReader consoleReader = ConsoleReader.getInstance();
+        int dimension = consoleReader.readInt("dimension", "", 2, 50);
 
         // Get total player count
-        System.out.println("Enter total number of players(>=2):");
-        int playerCount = ConsoleReader.scanner.nextInt();
-        while (!isValidPlayerCount(playerCount)) {
-            System.out.println("wrong input, enter correctly:");
-            playerCount = ConsoleReader.scanner.nextInt();
-        }
+        int playerCount = consoleReader.readInt("total player count", "", 2, dimension * dimension);
 
         // List to store all type of players
         List<Player> players = new ArrayList<>();
@@ -39,12 +30,7 @@ public class GamerDriver {
         Set<Character> takenSymbols = new HashSet<>();
 
         // Get human player count
-        System.out.println("Enter number of human player(>=0)(remaining will be automatically added bots):");
-        int humanPlayerCount = ConsoleReader.scanner.nextInt();
-        while (!isValidHumanPlayerCount(humanPlayerCount)) {
-            System.out.println("wrong input, enter correctly:");
-            humanPlayerCount = ConsoleReader.scanner.nextInt();
-        }
+        int humanPlayerCount = consoleReader.readInt("human player count", "remaining will be bots added automatically", 0, playerCount);
 
         // Add human players using helper method
         addHumanPlayers(humanPlayerCount, players, takenSymbols);
@@ -55,8 +41,7 @@ public class GamerDriver {
         addBotPlayers(botPlayerCount, players, takenSymbols);
 
         // Get count of blocked cells
-        System.out.printf("Enter the number of blocked cells(will be placed randomly)(>=0 && <=%d) : ", dimension * dimension);
-        int blockedCellCount = ConsoleReader.scanner.nextInt();
+        int blockedCellCount = consoleReader.readInt("blocked cell count", "will be placed randomly", 0, dimension * dimension);
 
         // Create game and start
         Game game = new Game(dimension, players, blockedCellCount, new SimpleWinningStrategy());
@@ -77,19 +62,10 @@ public class GamerDriver {
      * @param takenSymbols
      */
     private static void addHumanPlayers(int humanPlayerCount, List<Player> players, Set<Character> takenSymbols) {
+        ConsoleReader consoleReader = ConsoleReader.getInstance();
         for (int i = 0; i < humanPlayerCount; i++) {
-            System.out.println("Enter player name(length >= 2): ");
-            String name = ConsoleReader.scanner.next();
-            while (!isValidPlayerName(name)) {
-                System.out.println("wrong input, enter correctly:");
-                name = ConsoleReader.scanner.next();
-            }
-            System.out.println("Enter symbol(one char)(except already taken: " + takenSymbols + "):");
-            char symbol = ConsoleReader.scanner.next().charAt(0);
-            while (!isValidChosenSymbol(symbol, takenSymbols)) {
-                System.out.println(symbol + " already taken, choose any other symbol:");
-                symbol = ConsoleReader.scanner.next().charAt(0);
-            }
+            String name = consoleReader.readString("player name", "", 3, 10);
+            char symbol = consoleReader.readChar("symbol", "", takenSymbols);
             Player player = new HumanPlayer(name, symbol);
             players.add(player);
             takenSymbols.add(symbol);
@@ -98,12 +74,10 @@ public class GamerDriver {
     }
 
     private static void addBotPlayers(int botPlayerCount, List<Player> players, Set<Character> takenSymbols) {
+        ConsoleReader consoleReader = ConsoleReader.getInstance();
         if (botPlayerCount == 0) return;
-        System.out.println("Enter the bot difficulty level(easy):");
-        String difficultyLevel = ConsoleReader.scanner.next();
-        while (!isValidDifficultyLevel(difficultyLevel)) {
-            difficultyLevel = ConsoleReader.scanner.next();
-        }
+        List<String> difficultyLevels = List.of("easy", "medium");
+        String difficultyLevel = consoleReader.readString("difficulty level", "", difficultyLevels);
         char botSymbol = 'A';
         for (int i = 0; i < botPlayerCount; i++) {
             while (takenSymbols.contains(botSymbol)) botSymbol++;
@@ -112,31 +86,5 @@ public class GamerDriver {
             players.add(player);
             takenSymbols.add(botSymbol++);
         }
-    }
-
-    // User Input Validators
-    private static boolean isValidDimension(int dimension) {
-        return dimension >= 1;
-    }
-
-    private static boolean isValidPlayerCount(int playerCount) {
-        return playerCount >= 2;
-    }
-
-    private static boolean isValidHumanPlayerCount(int humanPlayerCount) {
-        return humanPlayerCount >= 0;
-    }
-
-    private static boolean isValidPlayerName(String name) {
-        return name.length() >= 2;
-    }
-
-    private static boolean isValidChosenSymbol(char symbol, Set<Character> takenSymbols) {
-        return !takenSymbols.contains(symbol);
-    }
-
-    private static boolean isValidDifficultyLevel(String difficultyLevel) {
-        difficultyLevel = difficultyLevel.toLowerCase();
-        return difficultyLevel.equals("easy");
     }
 }
