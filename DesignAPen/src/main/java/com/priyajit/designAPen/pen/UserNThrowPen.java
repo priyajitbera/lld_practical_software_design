@@ -1,11 +1,11 @@
 package com.priyajit.designAPen.pen;
 
-import com.priyajit.designAPen.strategy.NoRefill;
+import com.priyajit.designAPen.factory.RefillFactory;
 import com.priyajit.designAPen.refillable.Refillable;
+import com.priyajit.designAPen.strategy.Refill;
 
-public class UserNThrowPen extends Pen implements Refillable {
-    @Override
-    public void doRefill() {
-        this.refillStrategy = new NoRefill();
+public class UserNThrowPen extends Pen {
+    public UserNThrowPen(String name, String brand, int price, Refill refill) {
+        super(name, brand, price, refill);
     }
 }

@@ -1,12 +1,17 @@
 package com.priyajit.designAPen.pen;
 
+import com.priyajit.designAPen.factory.RefillFactory;
 import com.priyajit.designAPen.strategy.CartridgeRefill;
 import com.priyajit.designAPen.refillable.Refillable;
+import com.priyajit.designAPen.strategy.Refill;
 
 public class FountainPen extends Pen implements Refillable {
+    public FountainPen(String name, String brand, int price, Refill refill) {
+        super(name, brand, price, refill);
+    }
 
     @Override
     public void doRefill() {
-        this.refillStrategy = new CartridgeRefill();
+        this.refill = RefillFactory.cartridgeRefill();
     }
 }

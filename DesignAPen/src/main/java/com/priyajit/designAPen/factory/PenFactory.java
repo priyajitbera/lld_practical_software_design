@@ -8,34 +8,18 @@ import com.priyajit.designAPen.pen.UserNThrowPen;
 public class PenFactory {
 
     public static GelPen celloGelPen() {
-        GelPen pen = new GelPen();
-        pen.setName("Cello Gel Pen");
-        pen.setBrand("Cello");
-        pen.setPrice(15);
-        return pen;
+        return new GelPen("Cello Gel Pen", "Cello", 20, RefillFactory.gelRefill());
     }
 
     public static FountainPen parkerFountainPen() {
-        FountainPen pen = new FountainPen();
-        pen.setName("Parker Fountain Pen");
-        pen.setBrand("Parker");
-        pen.setPrice(550);
-        return pen;
+        return new FountainPen("Parker Fountain Pen", "Parker", 500, RefillFactory.cartridgeRefill());
     }
 
     public static UserNThrowPen agniUseNThrowPen() {
-        UserNThrowPen pen = new UserNThrowPen();
-        pen.setName("Agni UseNThrow Pen");
-        pen.setBrand("Agni");
-        pen.setPrice(5);
-        return pen;
+        return new UserNThrowPen("Agni UseNThrow Pen", "Agni", 5, RefillFactory.integratedRefill());
     }
 
     public static BallPen lincBallPen() {
-        BallPen pen = new BallPen();
-        pen.setName("Linc Ball Pen");
-        pen.setBrand("Linc");
-        pen.setPrice(10);
-        return pen;
+        return new BallPen("Linc Ball Pen", "Linc", 15, RefillFactory.ballRefill());
     }
 }

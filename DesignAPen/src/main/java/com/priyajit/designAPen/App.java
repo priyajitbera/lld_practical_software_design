@@ -1,10 +1,9 @@
 package com.priyajit.designAPen;
 
-import com.priyajit.designAPen.pen.BallPen;
-import com.priyajit.designAPen.pen.FountainPen;
-import com.priyajit.designAPen.pen.GelPen;
+import com.priyajit.designAPen.pen.*;
 import com.priyajit.designAPen.factory.PenFactory;
-import com.priyajit.designAPen.pen.UserNThrowPen;
+
+import java.util.List;
 
 /**
  * Hello world!
@@ -12,22 +11,20 @@ import com.priyajit.designAPen.pen.UserNThrowPen;
 public class App {
     public static void main(String[] args) {
         // Create Pens using Pen Factory
-        BallPen ballPen = PenFactory.lincBallPen();
-        FountainPen fountainPen = PenFactory.parkerFountainPen();
-        UserNThrowPen useNThrowPen = PenFactory.agniUseNThrowPen();
-        GelPen gelPen = PenFactory.celloGelPen();
-
-        // do initial refill
-        ballPen.doRefill();
-        fountainPen.doRefill();
-        useNThrowPen.doRefill();
-        gelPen.doRefill();
+        List<Pen> pens = List.of(PenFactory.lincBallPen(), PenFactory.parkerFountainPen(), PenFactory.agniUseNThrowPen(), PenFactory.celloGelPen());
 
         // Print Pen details
-        System.out.println(ballPen);
-        System.out.println(fountainPen);
-        System.out.println(useNThrowPen);
-        System.out.println(gelPen);
+        System.out.println("Added Pens(before writing) \n" + pens);
+
+        String paraToWrite = "This is being written using a pen";
+
+        // Write using pen
+        for(Pen pen : pens){
+            pen.write(paraToWrite);
+        }
+
+        // Print Pen details
+        System.out.println("Added Pens(after writing) \n" + pens);
     }
 }
 /*
