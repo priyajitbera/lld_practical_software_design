@@ -10,7 +10,7 @@ public abstract class Pen {
     private Integer price;
     Refill refill;
 
-    public Pen(String name, String brand, int price, Refill refill) {
+    public Pen(String name, String brand, Integer price, Refill refill) {
         this.name = name;
         this.brand = brand;
         this.price = price;

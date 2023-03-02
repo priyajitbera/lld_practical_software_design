@@ -6,7 +6,7 @@ import com.priyajit.designAPen.refillable.Refillable;
 import com.priyajit.designAPen.strategy.Refill;
 
 public class FountainPen extends Pen implements Refillable {
-    public FountainPen(String name, String brand, int price, Refill refill) {
+    public FountainPen(String name, String brand, Integer price, Refill refill) {
         super(name, brand, price, refill);
     }
 
