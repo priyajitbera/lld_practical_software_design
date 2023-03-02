@@ -73,11 +73,6 @@ public class Board {
         return blockedCellCount;
     }
 
-//    public void setBlockedCellCount(Integer blockedCellCount) {
-//        this.blockedCellCount = blockedCellCount;
-//    }
-
-
     public char[][] getCells() {
         return cells;
     }
