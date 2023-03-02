@@ -1,23 +1,24 @@
 package com.priyajit.designTicTacToe.player;
 
 import com.priyajit.designTicTacToe.game.Board;
+import com.priyajit.designTicTacToe.strategy.difficulylevel.Difficulty;
 import com.priyajit.designTicTacToe.strategy.difficulylevel.DifficultyLevel;
 
 public class BotPlayer extends Player{
-    DifficultyLevel difficultyLevel;
+    Difficulty difficulty;
 
     public BotPlayer(String name, char symbol) {
         super(name, symbol);
     }
 
-    public BotPlayer(String name, char symbol, DifficultyLevel difficultyLevel){
+    public BotPlayer(String name, char symbol, Difficulty difficulty){
         this(name, symbol);
-        this.difficultyLevel = difficultyLevel;
+        this.difficulty = difficulty;
     }
 
     @Override
     public Move makeMove(Board board){
-         Move move = difficultyLevel.doMove(board);
+         Move move = difficulty.doMove(board);
          move.setPlayer(this);
          return move;
     }

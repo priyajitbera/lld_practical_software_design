@@ -3,9 +3,9 @@ package com.priyajit.designTicTacToe.player;
 import com.priyajit.designTicTacToe.player.Player;
 
 public class Move {
-    Integer row;
-    Integer col;
-    Player player;
+    private Integer row;
+    private Integer col;
+    private Player player;
 
     public Move(Integer row, Integer col, Player player) {
         this.row = row;

@@ -8,7 +8,7 @@ import com.priyajit.designTicTacToe.player.Move;
  * Implements simple Tic Tac Toe winning strategy
  * Looks for rows / cols / diagonals with same symbol
  */
-public class SimpleWinningStrategy extends WinningStrategy {
+public class SimpleWinningStrategy implements WinningStrategy {
 
     @Override
     public GameStatus validate(Board board, Move lastMove) {

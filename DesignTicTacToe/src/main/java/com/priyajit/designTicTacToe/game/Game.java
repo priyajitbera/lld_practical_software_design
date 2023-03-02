@@ -8,6 +8,7 @@ import com.priyajit.designTicTacToe.strategy.winningstrategy.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -22,7 +23,7 @@ public class Game {
 
     private Player winner;
 
-    public GameStatus currentGameStatus;
+    private GameStatus currentGameStatus;
 
     public Player getWinner() {
         return winner;
@@ -47,9 +48,9 @@ public class Game {
 
                 // ask for choice of undo
                 if (moves.size() > 0) {
-                    List<Character> options = List.of('y', 'n');
+                    Set<Character> options = Set.of('y', 'n');
                     char choice = consoleReader.readChar("choice", "undo previous move?", options);
-                    if(choice == 'y'){
+                    if (choice == 'y') {
                         undo();
                         continue;
                     }
@@ -74,6 +75,10 @@ public class Game {
         board.printBoard();
     }
 
+    public GameStatus getCurrentGameStatus() {
+        return currentGameStatus;
+    }
+
     private void createPlaySequence() {
         this.playSequence = IntStream.range(0, players.size()).boxed().collect(Collectors.toList());
         System.out.println("Play sequence is:");
@@ -85,10 +90,11 @@ public class Game {
     public void undo() {
         if (moves.size() == 0) return;
         Move lastMove = moves.get(moves.size() - 1);
-        board.undoMove(lastMove.getRow(), lastMove.getCol(), lastMove.getPlayer().getSymbol());
+        board.undoMove(lastMove.getRow(), lastMove.getCol());
     }
 
     public void reconstructBoard() {
+        // TODO : implement
         resetBoard();
     }
 

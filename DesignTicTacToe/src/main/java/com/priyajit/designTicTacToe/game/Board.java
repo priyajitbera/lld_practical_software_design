@@ -8,24 +8,24 @@ public class Board {
     public final static char EMPTY_CELL_SYMBOL = ' ';
     public final static char BLOCKED_CELL_SYMBOL = '!';
 
+    // attributes
     private Integer dimension;
     private Integer blockedCellCount;
-    char[][] cells;
-
-    Integer emptyCellCount = 0;
+    private char[][] cells;
+    private Integer emptyCellCount = 0;
 
     // count maps to store row, col, diag wise symbol counts
     // key:col, value: map(key:symbol, value:count)
-    Map<Integer, Map<Character, Integer>> colWiseSymbolCount = new HashMap<>();
+    private Map<Integer, Map<Character, Integer>> colWiseSymbolCount = new HashMap<>();
 
     // key:row, value: map(key:symbol, value:count)
-    Map<Integer, Map<Character, Integer>> rowWiseSymbolCount = new HashMap<>();
+    private Map<Integer, Map<Character, Integer>> rowWiseSymbolCount = new HashMap<>();
 
     // key:(col-row), value: map(key:symbol, value:count)
-    Map<Integer, Map<Character, Integer>> posDiagWiseSymbolCount = new HashMap<>();
+    private Map<Integer, Map<Character, Integer>> posDiagWiseSymbolCount = new HashMap<>();
 
     // key:(row+col), value: map(key:symbol, value:count)
-    Map<Integer, Map<Character, Integer>> negDiagWiseSymbolCount = new HashMap<>();
+    private Map<Integer, Map<Character, Integer>> negDiagWiseSymbolCount = new HashMap<>();
 
     public Map<Integer, Map<Character, Integer>> getColWiseSymbolCount() {
         return colWiseSymbolCount;
@@ -43,26 +43,7 @@ public class Board {
         return negDiagWiseSymbolCount;
     }
 
-    public Integer getDimension() {
-        return dimension;
-    }
-
-    public void setDimension(Integer dimension) {
-        this.dimension = dimension;
-    }
-
-    public Integer getBlockedCellCount() {
-        return blockedCellCount;
-    }
-
-    public void setBlockedCellCount(Integer blockedCellCount) {
-        this.blockedCellCount = blockedCellCount;
-    }
-
-    public char[][] getCells() {
-        return cells;
-    }
-
+    // constructors
     public Board(Integer dimension, Integer blockedCellCount) {
         this.dimension = dimension;
         this.blockedCellCount = blockedCellCount;
@@ -79,6 +60,32 @@ public class Board {
         this.emptyCellCount = (dimension * dimension) - blockedCellCount;
     }
 
+    // getters and setters
+    public Integer getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(Integer dimension) {
+        this.dimension = dimension;
+    }
+
+    public Integer getBlockedCellCount() {
+        return blockedCellCount;
+    }
+
+//    public void setBlockedCellCount(Integer blockedCellCount) {
+//        this.blockedCellCount = blockedCellCount;
+//    }
+
+
+    public char[][] getCells() {
+        return cells;
+    }
+
+    public Integer getEmptyCellCount() {
+        return emptyCellCount;
+    }
+
     private void generateBlockedCells(int blockedCellCount) {
         var random = new Random();
         int count = 0;
@@ -91,9 +98,7 @@ public class Board {
         }
     }
 
-    public Integer getEmptyCellCount() {
-        return emptyCellCount;
-    }
+
 
     public void addMove(int row, int col, char symbol) {
         cells[row][col] = symbol;
@@ -101,7 +106,8 @@ public class Board {
         emptyCellCount--;
     }
 
-    public void undoMove(int row, int col, char symbol) {
+    public void undoMove(int row, int col) {
+        char symbol = cells[row][col];
         cells[row][col] = Board.EMPTY_CELL_SYMBOL;
         decrSymbolCount(row, col, symbol);
         emptyCellCount++;

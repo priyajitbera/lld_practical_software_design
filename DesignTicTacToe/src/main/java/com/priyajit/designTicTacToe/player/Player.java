@@ -25,10 +25,6 @@ public abstract class Player {
         return symbol;
     }
 
-    public void setSymbol(Character symbol) {
-        this.symbol = symbol;
-    }
-
     @Override
     public String toString() {
         return "Player{" +

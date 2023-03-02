@@ -11,7 +11,7 @@ import java.util.Random;
  * Implementation of DifficultyLevel for bot players
  * Randomly selects a free cell for move
  */
-public class EasyDifficultyLevel extends DifficultyLevel {
+public class EasyDifficulty implements Difficulty {
     @Override
     public Move doMove(Board board) {
         int dimension = board.getDimension();

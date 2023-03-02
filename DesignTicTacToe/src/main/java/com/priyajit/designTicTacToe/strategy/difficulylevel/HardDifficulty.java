@@ -9,7 +9,7 @@ import java.util.Random;
  * Implementation of DifficultyLevel for bot players
  * (same strategy as easy difficulty level, made up for demo)
  */
-public class HardDifficultyLevel extends DifficultyLevel {
+public class HardDifficulty implements Difficulty {
     @Override
     public Move doMove(Board board) {
         int dimension = board.getDimension();

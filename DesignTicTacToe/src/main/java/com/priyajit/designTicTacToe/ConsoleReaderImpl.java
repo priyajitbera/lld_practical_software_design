@@ -57,16 +57,15 @@ public class ConsoleReaderImpl implements ConsoleReader {
         return val;
     }
 
-    public String readString(String inputName, String message, List<String> options) {
+    public String readString(String inputName, String message, Set<String> options) {
         if (message != null && message.length() > 0) message = "(" + message + ")";
-        Set<String> optionsSet = new HashSet<>(options);
         System.out.printf("Enter %s %s (options:%s):%n", inputName, message, options);
         String val = "";
         try {
             val = scanner.next();
         } catch (InputMismatchException ignored) {
         }
-        while (!optionsSet.contains(val)) {
+        while (!options.contains(val)) {
             System.out.println("wrong input, enter correctly");
             try {
                 val = scanner.next();
@@ -76,7 +75,7 @@ public class ConsoleReaderImpl implements ConsoleReader {
         return val;
     }
 
-    public char readChar(String inputName, String message, Set<Character> forbiddenChars) {
+    public char readCharExcludingForbiddens(String inputName, String message, Set<Character> forbiddenChars) {
         if (message != null && message.length() > 0) message = "(" + message + ")";
         System.out.printf("Enter %s %s (except:%s):%n", inputName, message, forbiddenChars);
         char val = '.';
@@ -96,7 +95,7 @@ public class ConsoleReaderImpl implements ConsoleReader {
         return val;
     }
 
-    public char readChar(String inputName, String message, List<Character> options) {
+    public char readChar(String inputName, String message, Set<Character> options) {
         Set<Character> optionsSet = new HashSet<>(options);
         if (message != null && message.length() > 0) message = "(" + message + ")";
         System.out.printf("Enter %s %s (options:%s):%n", inputName, message, options);
