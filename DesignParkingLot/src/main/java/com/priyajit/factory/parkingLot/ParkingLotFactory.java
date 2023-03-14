@@ -7,4 +7,5 @@ import com.priyajit.entitiy.parkinglot.ParkingLot;
 
 public interface ParkingLotFactory {
 
+    ParkingLot parkingLot(String address);
 }

@@ -12,14 +12,14 @@ public class ParkingTicketController {
     private ParkingTicketResponseDTOFactory parkingTicketResponseDTOFactory;
 
     // GET
-    ParkingTicketResponseDTO getParkingTicket(Long id) {
+    public ParkingTicketResponseDTO getParkingTicket(Long id) {
         var parkingTicket = parkingTicketService.getParkingTicket(id);
         return parkingTicketResponseDTOFactory
                 .parkingTicketResponseDTOFactory(parkingTicket);
     }
 
     // POST
-    ParkingTicketResponseDTO createParkingTicket(ParkingTicketRequestDTO requestDTO) {
+    public ParkingTicketResponseDTO createParkingTicket(ParkingTicketRequestDTO requestDTO) {
         var parkingTicket = parkingTicketService
                 .createParkingTicket(
                         requestDTO.getVehicleRegNo(),

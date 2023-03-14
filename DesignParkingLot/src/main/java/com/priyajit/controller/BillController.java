@@ -6,12 +6,12 @@ import com.priyajit.dto.bill.BillResponseDTO;
 public class BillController {
 
     // GET
-    BillResponseDTO getBill(Long id){
+    public BillResponseDTO getBill(Long id){
         return null;
     }
 
     // POST
-    BillResponseDTO createBill(BillRequestDTO requestDTO){
+    public BillResponseDTO createBill(BillRequestDTO requestDTO){
         return null;
     }
 }

@@ -14,25 +14,25 @@ public class ParkingLotController {
     private ParkingLotService parkingLotService;
 
     // GET
-    ParkingLotResponseDTO getParkingLot(Long id) {
+    public ParkingLotResponseDTO getParkingLot(Long id) {
         var parkingLot = parkingLotService.getParkingLot(id);
         return parkingLotResponseDTOFactory.parkingLotResponseDTO(parkingLot);
     }
 
     // POST
-    ParkingLotResponseDTO createParkingLot(ParkingLotRequestDTO requestDTO) {
+    public ParkingLotResponseDTO createParkingLot(ParkingLotRequestDTO requestDTO) {
         var parkingLot = parkingLotService.createParkingLot(requestDTO.getAddress());
         return parkingLotResponseDTOFactory.parkingLotResponseDTO(parkingLot);
     }
 
-    // PATCH
-    ParkingLotResponseDTO addFloor(Long id) {
+    // POST
+    public ParkingLotResponseDTO addFloor(Long id) {
         var parkingLot = parkingLotService.addFloor(id);
         return parkingLotResponseDTOFactory.parkingLotResponseDTO(parkingLot);
     }
 
-    // PATCH
-    ParkingLotResponseDTO addSlot(Long id, Long floorId, Boolean supportsCharging) {
+    // POST
+    public ParkingLotResponseDTO addSlot(Long id, Long floorId, Boolean supportsCharging) {
         var parkingLot = parkingLotService.addSlot(id, floorId, supportsCharging);
         return parkingLotResponseDTOFactory.parkingLotResponseDTO(parkingLot);
     }
