@@ -93,8 +93,6 @@ public class Board {
         }
     }
 
-
-
     public void addMove(int row, int col, char symbol) {
         cells[row][col] = symbol;
         incrSymbolCount(row, col, symbol);
